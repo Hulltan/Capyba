@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "121389901103",
+    "project_id": "capyba-b0f9c",
+    "storage_bucket": "capyba-b0f9c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121389901103:android:2c1171467beff171e32dda",
+        "android_client_info": {
+          "package_name": "com.example.capyba_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "121389901103-1vdk79l7vvrka511iu594s01m6m6ivdh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0HqE42foRqh-Ts_umy9YfkSc4bbUXtI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "121389901103-1vdk79l7vvrka511iu594s01m6m6ivdh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

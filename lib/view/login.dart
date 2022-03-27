@@ -9,7 +9,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String senha = '';
+  String password = '';
   String email = '';
   final _formKey = GlobalKey<FormState>();
 
@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                     labelText: 'Senha',
                   ),
                   validator: (input) => input == '' ? 'Digite uma senha' : null,
-                  onSaved: (value) => senha = value!,
+                  onSaved: (value) => password = value!,
                 ),
                 const SizedBox(
                   height: 32,
