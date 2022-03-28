@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,47 +21,55 @@ class PreviewPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.all(30),
-                      child: CircleAvatar(
-                        radius: 30,
-                        backgroundColor: Colors.black.withOpacity(0.5),
-                        child: IconButton(
-                          icon: const Icon(
-                            Icons.check,
-                            color: Colors.green,
-                            size: 28,
-                          ),
-                          onPressed: () => Get.back(result: picture),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.all(30),
-                      child: CircleAvatar(
-                        radius: 30,
-                        backgroundColor: Colors.black.withOpacity(0.5),
-                        child: IconButton(
-                          icon: const Icon(
-                            Icons.close,
-                            color: Colors.green,
-                            size: 28,
-                          ),
-                          onPressed: () => Get.back(),
-                        ),
-                      ),
-                    ),
-                  ),
+                  _checkButton(),
+                  _closeButton(),
                 ],
               ),
             ],
           ))
         ],
+      ),
+    );
+  }
+
+  _checkButton() {
+    Align(
+      alignment: Alignment.bottomCenter,
+      child: Padding(
+        padding: const EdgeInsets.all(30),
+        child: CircleAvatar(
+          radius: 30,
+          backgroundColor: Colors.black.withOpacity(0.5),
+          child: IconButton(
+            icon: const Icon(
+              Icons.check,
+              color: Colors.green,
+              size: 28,
+            ),
+            onPressed: () => Get.back(result: picture),
+          ),
+        ),
+      ),
+    );
+  }
+
+  _closeButton() {
+    Align(
+      alignment: Alignment.bottomCenter,
+      child: Padding(
+        padding: const EdgeInsets.all(30),
+        child: CircleAvatar(
+          radius: 30,
+          backgroundColor: Colors.black.withOpacity(0.5),
+          child: IconButton(
+            icon: const Icon(
+              Icons.close,
+              color: Colors.green,
+              size: 28,
+            ),
+            onPressed: () => Get.back(),
+          ),
+        ),
       ),
     );
   }

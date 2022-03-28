@@ -1,3 +1,4 @@
+import 'package:capyba_app/controller/sign_in.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -9,8 +10,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String password = '';
   String email = '';
+  String password = '';
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -29,55 +30,80 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _formUI() {
     return Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-            reverse: true,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                    height: 200.0,
-                    width: 200.0,
-                    child: Image.asset('capyba_simbolo.png')),
-                const SizedBox(
-                  height: 32,
-                ),
-                TextFormField(
-                  keyboardType: TextInputType.text,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Email',
-                  ),
-                  validator: (input) => input == '' ? 'Digite um email' : null,
-                  onSaved: (value) => email = value!,
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                TextFormField(
-                  obscureText: true,
-                  keyboardType: TextInputType.text,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Senha',
-                  ),
-                  validator: (input) => input == '' ? 'Digite uma senha' : null,
-                  onSaved: (value) => password = value!,
-                ),
-                const SizedBox(
-                  height: 32,
-                ),
-                FloatingActionButton.extended(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _formKey.currentState!.save();
-                      // Navigator.pushNamed(context, '');
-                    }
-                  },
-                  label: const Text("Entrar"),
-                ),
-              ],
-            )));
+      key: _formKey,
+      child: SingleChildScrollView(
+        reverse: true,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            _imageBox(),
+            _bigSpacer(),
+            _emailInput(),
+            _tinySpacer(),
+            _passwordInput(),
+            _bigSpacer(),
+            _loginButton(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  _imageBox() {
+    SizedBox(
+      height: 200.0,
+      width: 200.0,
+      child: Image.asset('capyba_simbolo.png'),
+    );
+  }
+
+  _tinySpacer() {
+    const SizedBox(
+      height: 16,
+    );
+  }
+
+  _bigSpacer() {
+    const SizedBox(
+      height: 32,
+    );
+  }
+
+  _emailInput() {
+    TextFormField(
+      keyboardType: TextInputType.emailAddress,
+      decoration: const InputDecoration(
+        border: OutlineInputBorder(),
+        labelText: 'Email',
+      ),
+      validator: (input) => input == '' ? 'Digite um email' : null,
+      onSaved: (value) => email = value!,
+    );
+  }
+
+  _passwordInput() {
+    TextFormField(
+      obscureText: true,
+      keyboardType: TextInputType.text,
+      decoration: const InputDecoration(
+        border: OutlineInputBorder(),
+        labelText: 'Senha',
+      ),
+      validator: (input) => input == '' ? 'Digite uma senha' : null,
+      onSaved: (value) => password = value!,
+    );
+  }
+
+  _loginButton() {
+    FloatingActionButton.extended(
+      onPressed: () {
+        if (_formKey.currentState!.validate()) {
+          _formKey.currentState!.save();
+          signIn(email, password, _formKey, context);
+        }
+      },
+      label: const Text("Entrar"),
+    );
   }
 }
