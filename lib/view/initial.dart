@@ -15,55 +15,61 @@ class _InitialPageState extends State<InitialPage> {
       appBar: AppBar(title: Center(child: Text(widget.title))),
       body: Center(
           child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          _spacer(),
-          _imageBox(),
-          _spacer(),
-          _registerButton(),
-          _separator(),
-          _alreadyRegisterButton(),
-        ],
-      )),
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _spacer(),
+              _imageBox(),
+              _spacer(),
+              _registerButton(),
+              _separator(),
+              _alreadyRegisterButton(),
+            ],
+          )),
     );
   }
 
   _imageBox() {
-    SizedBox(
+    return SizedBox(
       height: 200.0,
       width: 200.0,
-      child: Image.asset('capyba_simbolo.png'),
+      child: Image.asset('assets/capyba_simbolo.png'),
     );
   }
 
   _spacer() {
-    const SizedBox(
+    return const SizedBox(
       height: 40,
     );
   }
 
   _registerButton() {
-    FloatingActionButton.extended(
+    return FloatingActionButton.extended(
       onPressed: () {
         Navigator.of(context).pushNamed('/register');
       },
       backgroundColor: Colors.green,
-      label: const Text("Cadastre-se"),
+      label: const Text(
+        "Cadastre-se",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 17,
+        ),
+      ),
     );
   }
 
   _separator() {
-    const SizedBox(
+    return const SizedBox(
       height: 15,
     );
   }
 
   _alreadyRegisterButton() {
-    TextButton(
+    return TextButton(
       child: const Text(
         'Já tenho uma conta',
         style: TextStyle(
-          color: Colors.green,
+          color: Colors.white,
           decoration: TextDecoration.underline,
           fontSize: 17,
         ),

@@ -33,7 +33,7 @@ class PreviewPage extends StatelessWidget {
   }
 
   _checkButton() {
-    Align(
+    return Align(
       alignment: Alignment.bottomCenter,
       child: Padding(
         padding: const EdgeInsets.all(30),
@@ -54,7 +54,7 @@ class PreviewPage extends StatelessWidget {
   }
 
   _closeButton() {
-    Align(
+    return Align(
       alignment: Alignment.bottomCenter,
       child: Padding(
         padding: const EdgeInsets.all(30),

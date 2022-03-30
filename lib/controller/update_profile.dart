@@ -7,10 +7,10 @@ Future<void> updateProfile(
   if (formState!.validate()) {
     formState.save();
     try {
-      await FirebaseAuth.instance.currentUser?.updateEmail(email);
-      await FirebaseAuth.instance.currentUser?.updatePassword(password);
-    } catch (e) {
-      print(e);
+      await user?.updateEmail(email);
+      await user?.updatePassword(password);
+    } on FirebaseException catch (e) {
+      throw Exception('Erro durante a aualização do perfil: ${e.code}');
     }
   }
 }

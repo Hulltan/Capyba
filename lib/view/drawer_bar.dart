@@ -19,7 +19,7 @@ class DrawerBar extends StatelessWidget {
   }
 
   _header() {
-    const DrawerHeader(
+    return const DrawerHeader(
       decoration: BoxDecoration(
         color: Colors.green,
       ),
@@ -27,7 +27,6 @@ class DrawerBar extends StatelessWidget {
         'Capyba App',
         style: TextStyle(
           fontWeight: FontWeight.bold,
-          color: Colors.black,
           fontSize: 25,
         ),
       ),
@@ -35,14 +34,12 @@ class DrawerBar extends StatelessWidget {
   }
 
   _profile(BuildContext context) {
-    ListTile(
+    return ListTile(
       leading: const Icon(
         Icons.account_circle,
-        color: Colors.green,
       ),
       title: const Text(
         'Perfil',
-        style: TextStyle(color: Colors.green),
       ),
       onTap: () {
         Navigator.pushNamed(context, '/profile');
@@ -51,14 +48,12 @@ class DrawerBar extends StatelessWidget {
   }
 
   _emailValidation(BuildContext context) {
-    ListTile(
+    return ListTile(
       leading: const Icon(
         Icons.email,
-        color: Colors.green,
       ),
       title: const Text(
         'Validar Email',
-        style: TextStyle(color: Colors.green),
       ),
       onTap: () {
         Navigator.pushNamed(context, '/validation');
@@ -67,18 +62,16 @@ class DrawerBar extends StatelessWidget {
   }
 
   _logoff(BuildContext context) {
-    ListTile(
+    return ListTile(
       leading: const Icon(
         Icons.power_settings_new,
-        color: Colors.green,
       ),
       title: const Text(
         'Sair',
-        style: TextStyle(color: Colors.green),
       ),
       onTap: () {
         FirebaseAuth.instance.signOut();
-        Navigator.pushNamed(context, '/');
+        Navigator.pushNamedAndRemoveUntil(context, 'decision', (_) => false);
       },
     );
   }

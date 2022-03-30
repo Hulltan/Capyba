@@ -12,23 +12,31 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  bool check = false;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const DrawerBar(),
-      appBar: AppBar(
-        bottom: const TabBar(
-          tabs: [
-            Tab(text: "Public Section"),
-            Tab(text: "Restricted section"),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        drawer: const DrawerBar(),
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text("Pokedex"),
+          bottom: const TabBar(
+            tabs: [
+              Tab(text: "Public Section"),
+              Tab(text: "Restricted section"),
+            ],
+            indicatorColor: Colors.green,
+          ),
+        ),
+        body: const TabBarView(
+          children: [
+            OpenPage(),
+            RestrictedPage(),
           ],
         ),
-      ),
-      body: const TabBarView(
-        children: [
-          OpenPage(),
-          RestrictedPage(),
-        ],
       ),
     );
   }

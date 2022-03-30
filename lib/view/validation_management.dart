@@ -15,16 +15,13 @@ class _ValidationPageState extends State<ValidationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          AppBar(title: AppBar(centerTitle: true, title: Text(widget.title))),
+      appBar: AppBar(centerTitle: true, title: Text(widget.title)),
       body: Column(
         children: [
-          Center(
-            child: _emailField(user),
-          ),
+          _emailField(user),
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children:[
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
               _validationButton(user),
             ],
           ),
@@ -34,20 +31,25 @@ class _ValidationPageState extends State<ValidationPage> {
   }
 
   _emailField(User? user) {
-    Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: TextField(
-        readOnly: true,
-        decoration: InputDecoration(
-          labelText: 'Email',
-          hintText: user!.email,
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(30.0),
+      child: Column(
+        children: [
+          TextField(
+            readOnly: true,
+            decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              hintText: user!.email,
+            ),
+          ),
+        ],
       ),
     );
   }
 
+
   _validationButton(User? user) {
-    ElevatedButton.icon(
+    return ElevatedButton.icon(
       onPressed: () {
         user!.sendEmailVerification();
         showDialog(
@@ -66,7 +68,7 @@ class _ValidationPageState extends State<ValidationPage> {
   }
 
   _popup() {
-    AlertDialog(
+    return AlertDialog(
       title: const Text("Validação enviada com sucesso"),
       content:
           const Text("Por favor verifique a caixa de entrada do seu email."),

@@ -51,27 +51,27 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _imageBox() {
-    SizedBox(
+    return SizedBox(
       height: 200.0,
       width: 200.0,
-      child: Image.asset('capyba_simbolo.png'),
+      child: Image.asset('assets/capyba_simbolo.png'),
     );
   }
 
   _tinySpacer() {
-    const SizedBox(
+    return const SizedBox(
       height: 16,
     );
   }
 
   _bigSpacer() {
-    const SizedBox(
+    return const SizedBox(
       height: 32,
     );
   }
 
   _emailInput() {
-    TextFormField(
+    return TextFormField(
       keyboardType: TextInputType.emailAddress,
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _passwordInput() {
-    TextFormField(
+    return TextFormField(
       obscureText: true,
       keyboardType: TextInputType.text,
       decoration: const InputDecoration(
@@ -96,14 +96,21 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _loginButton() {
-    FloatingActionButton.extended(
+    return FloatingActionButton.extended(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
           _formKey.currentState!.save();
           signIn(email, password, _formKey, context);
         }
       },
-      label: const Text("Entrar"),
+      backgroundColor: Colors.green,
+      label: const Text(
+        "Entrar",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 17,
+        ),
+      ),
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:camera_camera/camera_camera.dart';
 import 'package:get/get.dart';
 import 'package:capyba_app/controller/sign_up.dart';
-
 import '../controller/show_preview.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -18,7 +17,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String email = '';
   String password = '';
   String confirmationPassword = '';
-  late File picture;
+  File? picture;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -52,11 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
             _tinySpacer(),
             _confirmPassword(),
             _tinySpacer(),
-            Row(
-              children: [
-                _pictureButton(),
-              ],
-            ),
+            _pictureButton(),
             _bigSpacer(),
             _registerButton(),
           ],
@@ -66,15 +61,15 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   _imageBox() {
-    SizedBox(
+    return SizedBox(
       height: 200.0,
       width: 200.0,
-      child: Image.asset('capyba_simbolo.png'),
+      child: Image.asset('assets/capyba_simbolo.png'),
     );
   }
 
   _emailInput() {
-    TextFormField(
+    return TextFormField(
       keyboardType: TextInputType.emailAddress,
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
@@ -86,7 +81,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   _passwordInput() {
-    TextFormField(
+    return TextFormField(
       obscureText: true,
       keyboardType: TextInputType.text,
       decoration: const InputDecoration(
@@ -99,7 +94,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   _confirmPassword() {
-    TextFormField(
+    return TextFormField(
       obscureText: true,
       keyboardType: TextInputType.text,
       decoration: const InputDecoration(
@@ -112,22 +107,22 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   _tinySpacer() {
-    const SizedBox(
+    return const SizedBox(
       height: 16,
     );
   }
 
   _bigSpacer() {
-    const SizedBox(
+    return const SizedBox(
       height: 32,
     );
   }
 
   _pictureButton() {
-    ElevatedButton.icon(
+    return ElevatedButton.icon(
       onPressed: () => Get.to(() => CameraCamera(
             onFile: (file) => showPreview(file),
-            cameraSide: CameraSide.front,
+            cameraSide: CameraSide.back,
           )),
       icon: const Icon(Icons.camera_alt),
       label: const Padding(
@@ -143,7 +138,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   _registerButton() {
-    FloatingActionButton.extended(
+    return FloatingActionButton.extended(
       onPressed: () {
         if (password != confirmationPassword) {
           showDialog(
@@ -153,12 +148,17 @@ class _RegisterPageState extends State<RegisterPage> {
           );
         } else if (_formKey.currentState!.validate()) {
           _formKey.currentState!.save();
-          signUp(email, password, _formKey.currentState, context);
+          signUp(email, password, _formKey.currentState, context, picture);
         }
       },
+      backgroundColor: Colors.green,
       extendedPadding: const EdgeInsets.all(16.0),
       label: const Text(
         "Cadastrar",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 17,
+        ),
       ),
     );
   }

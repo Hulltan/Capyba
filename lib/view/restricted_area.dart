@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../controller/get_data.dart';
-import '../model/pokemon.dart';
 
 class RestrictedPage extends StatefulWidget {
   const RestrictedPage({Key? key}) : super(key: key);
@@ -12,6 +11,7 @@ class RestrictedPage extends StatefulWidget {
 }
 
 class _RestrictedPageState extends State<RestrictedPage> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,24 +29,31 @@ class _RestrictedPageState extends State<RestrictedPage> {
     }
   }
 
-  Widget _pokemonList(){
-    var pokeList = _getCollection();
-    return ListView.builder(
-      itemCount: pokeList.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          leading: Text(pokeList[index].id),
-          title: Text(pokeList[index].name),
-          subtitle: Text(pokeList[index].category),
-        );
+  Widget _pokemonList() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: getData("open_collection"),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          return ListView(
+            children: snapshot.data!.docs.map((doc) {
+              return Card(
+                child: ListTile(
+                  leading: Text(doc['id']),
+                  title: Text(doc['name']),
+                  subtitle: Text(doc['category']),
+                ),
+              );
+            }).toList(),
+          );
+        }
       },
     );
   }
 
-  List<Pokemon> _getCollection() {
-    var overUsedPokedex = getData("open_collection") as List<Pokemon>;
-    return overUsedPokedex;
-  }
 
   Widget _missingValidation() {
     return AlertDialog(
@@ -57,7 +64,7 @@ class _RestrictedPageState extends State<RestrictedPage> {
           "clicando no icone que se encontra no canto superior esquerdo."),
       actions: [
         ElevatedButton(
-            onPressed: () => Navigator.of(context).pushNamed("/openArea"),
+            onPressed: () => Navigator.of(context).pushReplacementNamed("/home"),
             child: const Text("Ok"))
       ],
     );
