@@ -47,7 +47,6 @@ class _ValidationPageState extends State<ValidationPage> {
     );
   }
 
-
   _validationButton(User? user) {
     return ElevatedButton.icon(
       onPressed: () {

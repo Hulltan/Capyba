@@ -13,6 +13,7 @@
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize"
             android:exported="true"
+            android:usesCleartextTraffic="true"
             tools:ignore="Instantiatable"
             tools:targetApi="honeycomb">
             <!-- Specifies an Android theme to apply to this Activity as soon as

@@ -11,7 +11,6 @@ class RestrictedPage extends StatefulWidget {
 }
 
 class _RestrictedPageState extends State<RestrictedPage> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,8 +22,7 @@ class _RestrictedPageState extends State<RestrictedPage> {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null && !user.emailVerified) {
       return _missingValidation();
-    }
-    else {
+    } else {
       return _pokemonList();
     }
   }
@@ -54,7 +52,6 @@ class _RestrictedPageState extends State<RestrictedPage> {
     );
   }
 
-
   Widget _missingValidation() {
     return AlertDialog(
       title: const Text("Erro: Validação pendente"),
@@ -64,7 +61,8 @@ class _RestrictedPageState extends State<RestrictedPage> {
           "clicando no icone que se encontra no canto superior esquerdo."),
       actions: [
         ElevatedButton(
-            onPressed: () => Navigator.of(context).pushReplacementNamed("/home"),
+            onPressed: () =>
+                Navigator.of(context).pushReplacementNamed("/home"),
             child: const Text("Ok"))
       ],
     );

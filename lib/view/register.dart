@@ -1,9 +1,7 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:camera_camera/camera_camera.dart';
-import 'package:get/get.dart';
 import 'package:capyba_app/controller/sign_up.dart';
-import '../controller/show_preview.dart';
+import 'package:image_picker/image_picker.dart';
+
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key, required this.title}) : super(key: key);
@@ -17,7 +15,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String email = '';
   String password = '';
   String confirmationPassword = '';
-  File? picture;
+  late XFile picture;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -120,10 +118,10 @@ class _RegisterPageState extends State<RegisterPage> {
 
   _pictureButton() {
     return ElevatedButton.icon(
-      onPressed: () => Get.to(() => CameraCamera(
-            onFile: (file) => showPreview(file),
-            cameraSide: CameraSide.back,
-          )),
+      onPressed: () async {
+        ImagePicker picker = ImagePicker();
+        picture = (await picker.pickImage(source: ImageSource.camera))!;
+      },
       icon: const Icon(Icons.camera_alt),
       label: const Padding(
         padding: EdgeInsets.all(12.0),

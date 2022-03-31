@@ -127,8 +127,7 @@ class _ProfilePageState extends State<ProfilePage> {
   _updatePopup() {
     return AlertDialog(
       title: const Text("Salvo"),
-      content:
-      const Text("Dados alterados com sucesso."),
+      content: const Text("Dados alterados com sucesso."),
       actions: [
         TextButton(
           onPressed: Navigator.of(context).pop,

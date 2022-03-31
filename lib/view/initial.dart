@@ -15,16 +15,16 @@ class _InitialPageState extends State<InitialPage> {
       appBar: AppBar(title: Center(child: Text(widget.title))),
       body: Center(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _spacer(),
-              _imageBox(),
-              _spacer(),
-              _registerButton(),
-              _separator(),
-              _alreadyRegisterButton(),
-            ],
-          )),
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          _spacer(),
+          _imageBox(),
+          _spacer(),
+          _registerButton(),
+          _separator(),
+          _alreadyRegisterButton(),
+        ],
+      )),
     );
   }
 
